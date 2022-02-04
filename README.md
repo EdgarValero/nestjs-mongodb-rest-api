@@ -24,6 +24,8 @@
 
 ## Description
 
+Rest API with Nestjs and MongoDB
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
