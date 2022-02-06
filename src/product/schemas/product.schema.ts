@@ -5,7 +5,7 @@ export const ProductSchema = new Schema({
   description: String,
   imageURL: String,
   price: Number,
-  createAt: {
+  createdAt: {
     type: Date,
     default: Date.now
   }
