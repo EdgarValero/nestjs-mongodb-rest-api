@@ -3,7 +3,7 @@ import { CreateProductDto } from './dto/product.dto';
 import { ProductService } from './product.service';
 import { Product } from './interfaces/product.interface';
 
-@Controller('product')
+@Controller('api/products')
 export class ProductController {
 
   constructor(private productService: ProductService) {}
@@ -21,7 +21,7 @@ export class ProductController {
     return res.status(HttpStatus.OK).json(product);
   }
 
-  @Post('/create')
+  @Post()
   async createProduct(@Body() createProductDto: CreateProductDto, @Res() res): Promise<Product> {
     const product = await this.productService.createProduct(createProductDto);
     return res.json({
@@ -30,7 +30,7 @@ export class ProductController {
     });
   }
 
-  @Delete('/delete')
+  @Delete()
   async deleteProduct(@Query('id') productId, @Res() res): Promise<Product> {
     const deletedProduct = await this.productService.deleteProduct(productId);
     if (!deletedProduct) throw new NotFoundException('Product does not exist!');
@@ -40,7 +40,7 @@ export class ProductController {
     });
   }
 
-  @Put('/update/:id')
+  @Put(':id')
   async updateProduct(@Param('id') productId, @Body() createProductDto: CreateProductDto, @Res() res): Promise<Product> {
     const updatedProduct = await this.productService.updateProduct(productId, createProductDto);
     if (!updatedProduct) throw new NotFoundException('Product does not exist!');
